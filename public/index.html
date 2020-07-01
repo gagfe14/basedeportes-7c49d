@@ -69,13 +69,17 @@
     <script src="/__/firebase/7.14.6/firebase-storage.js"></script>
     <!-- Carga la configuración de tu proyecto en el servidor de Firebase. -->
     <script src="/__/firebase/init.js"></script>
-  
+  </head>
   <body>
     <form action="javascript:guarda()">
       <h1>DEPORTES</h1>
       Ingrese el nombre de un deporte (solo letras)
       <p><input id="nombreDeporte" type="text" placeholder="Nombre del deporte" pattern="[a-zA-Zàáâäãåąčćęèé
         êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/></p>
+      
+        <p><input id="nombreDeportista" type="text" placeholder="Nombre del deportista" pattern="[a-zA-Zàáâäãåąčćęèé
+          êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/></p>
+        
       
         <button id="agregar" type="button"
          onclick="alta();">Agregar</button>
@@ -106,6 +110,7 @@
               `<li>
                 <button type=button onclick="muestra('${cod(doc.id)}')">
                   ${cod(doc.data().DEPORT_NOMBRE)}
+                  ${cod(doc.data().DEPORT_DEPORTISTA)}
                 </button>
               </li>`);
             lista.innerHTML = inner;
@@ -122,7 +127,8 @@
         eliminar.disabled = true; // Deshabilita el botón "eliminar".
         id = ""; // Pone en blanco el id, porque todavía no agregamos a la BD.
         nombreDeporte.value = ""; // Pone en blanco los datos porque todavía no hay.
-        
+        nombreDeportista.value = "";
+
       }
       /** Prepara la forma para modificar el documento que corresponde al
        * id seleccionado en el listado.
@@ -138,6 +144,7 @@
             id = doc.id;
             let data = doc.data();
             nombreDeporte.value = data.DEPORT_NOMBRE || "";
+            nombreDeportista.value = data.DEPORT_DEPORTISTA || "";
           } else {
             alert("El pasatiempo selecionado no está registrado.");
             alta();
@@ -149,7 +156,7 @@
       async function guarda() {
         try {
           const modelo = {
-            DEPORT_NOMBRE: nombreDeporte.value.trim()
+            DEPORT_NOMBRE: nombreDeporte.value.trim(), DEPORT_DEPORTISTA: nombreDeportista.value.trim()
           };
           if (id) {
             /* Modifica el modelo en la base de datos en base al id y espera a
