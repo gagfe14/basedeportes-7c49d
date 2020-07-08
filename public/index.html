@@ -77,7 +77,7 @@
       <p><input id="nombreDeporte" type="text" placeholder="Nombre del deporte" pattern="[a-zA-Zàáâäãåąčćęèé
         êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/></p>
       
-        <p><input id="nombreDeportista" type="text" placeholder="Nombre del deportista" pattern="[a-zA-Zàáâäãåąčćęèé
+        <p><input id="deportista" type="text" placeholder="Nombre del deportista" pattern="[a-zA-Zàáâäãåąčćęèé
           êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/></p>
         
       
@@ -100,17 +100,20 @@
       muestraLista();
       alta();
       function muestraLista() {
-        /* Pide todos los registros de la colección "PASATIEMPO" ordenados por
-         * el campo "PAS_NOMBRE" de forma ascendente. */
-        firestore.collection("DEPORTE").orderBy("DEPORT_NOMBRE").onSnapshot(
+        
+        firestore.collection("DEPORTE").orderBy("N_DEPORTE").onSnapshot
+        firestore.collection("DEPORTE").orderBy("N_DEPORTISTA").onSnapshot(
           documentos => {
             let inner = "";
             documentos.forEach(doc =>
               inner += /* html */
               `<li>
                 <button type=button onclick="muestra('${cod(doc.id)}')">
-                  ${cod(doc.data().DEPORT_NOMBRE)}
-                  ${cod(doc.data().DEPORT_DEPORTISTA)}
+                  ${cod(doc.data().N_DEPORTE)}
+                </button>
+
+                <button type=button onclick="muestra('${cod(doc.id)}')">
+                  ${cod(doc.data().N_DEPORTISTA)}
                 </button>
               </li>`);
             lista.innerHTML = inner;
@@ -143,10 +146,10 @@
           if (doc.exists) {
             id = doc.id;
             let data = doc.data();
-            nombreDeporte.value = data.DEPORT_NOMBRE || "";
-            nombreDeportista.value = data.DEPORT_DEPORTISTA || "";
+            nombreDeporte.value = data.N_DEPORTE || "";
+            deportista.value = data.N_DEPORTISTA || "";
           } else {
-            alert("El pasatiempo selecionado no está registrado.");
+            alert("El deporte no ha sido registrado.");
             alta();
           }
         } catch (e) {
@@ -156,7 +159,8 @@
       async function guarda() {
         try {
           const modelo = {
-            DEPORT_NOMBRE: nombreDeporte.value.trim(), DEPORT_DEPORTISTA: nombreDeportista.value.trim()
+            N_DEPORTE: nombreDeporte.value.trim(), 
+            N_DEPORTISTA: deportista.value.trim()
           };
           if (id) {
             /* Modifica el modelo en la base de datos en base al id y espera a
@@ -211,15 +215,5 @@
     </output>
   </p>
   </h2><mi-footer></mi-footer>
-  <script>
-    try {
-      let app = firebase.app();
-      let apis = ["auth", "firestore", "storage"]
-        .filter(api => typeof app[api] === "function");
-      mensaje.value = ``;
-    } catch (e) {
-      muestraError(e);
-    }
-  </script>
   </body>
 </html>
