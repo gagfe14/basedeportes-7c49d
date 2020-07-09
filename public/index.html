@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> 
     <link rel="stylesheet" href="css/estilos.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     
@@ -75,17 +75,18 @@
     <script src="/__/firebase/init.js"></script>
   </head>
   <body>
-    <div>
+    
+    <div class="contenedor">
       <form id="content" action="javascript:guarda()">
         <h1>DEPORTES</h1>
         Ingrese el nombre de un deporte (solo letras)
-        <p><input id="nombreDeporte" type="text" placeholder="Nombre del deporte" pattern="[a-zA-Zàáâäãåąčćęèé
-          êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/></p>
+        <input id="nombreDeporte" type="text" placeholder="Nombre del deporte" pattern="[a-zA-Zàáâäãåąčćęèé
+          êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/>
         
-          <p><input id="deportista" type="text" placeholder="Nombre del deportista" pattern="[a-zA-Zàáâäãåąčćęèé
-            êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/></p>
+        <input id="deportista" type="text" placeholder="Nombre del deportista" pattern="[a-zA-Zàáâäãåąčćęèé
+            êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/>
           
-        
+        <br>
           <button id="agregar" type="button"
            onclick="alta();">Agregar</button>
   
@@ -98,7 +99,6 @@
         </ul>
         <mi-footer></mi-footer>
       </form>
-
     </div>
     
     <script>
