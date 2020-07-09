@@ -2,9 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="css/estilos.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    
     rel="stylesheet">
+    
     <title>Deportes</title>
     
     <script>
@@ -57,7 +61,7 @@
     <link rel="apple-touch-icon" sizes="2048x2048" href="img/icono-2048.png">
 
     <script type="module" src="cmp/mi-footer.js"></script>
-    <link rel="stylesheet" href="css/estilos.css">
+    
 
     <!-- Carga el núcleo de Firebase. Actualiza los números de versión cuando
     sea necesario. Hemos quitado el atributo defer que aparecía originalmente.
@@ -71,28 +75,32 @@
     <script src="/__/firebase/init.js"></script>
   </head>
   <body>
-    <form action="javascript:guarda()">
-      <h1>DEPORTES</h1>
-      Ingrese el nombre de un deporte (solo letras)
-      <p><input id="nombreDeporte" type="text" placeholder="Nombre del deporte" pattern="[a-zA-Zàáâäãåąčćęèé
-        êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/></p>
-      
-        <p><input id="deportista" type="text" placeholder="Nombre del deportista" pattern="[a-zA-Zàáâäãåąčćęèé
+    <div>
+      <form id="content" action="javascript:guarda()">
+        <h1>DEPORTES</h1>
+        Ingrese el nombre de un deporte (solo letras)
+        <p><input id="nombreDeporte" type="text" placeholder="Nombre del deporte" pattern="[a-zA-Zàáâäãåąčćęèé
           êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/></p>
         
-      
-        <button id="agregar" type="button"
-         onclick="alta();">Agregar</button>
-
-        <button type="submit">Guardar</button>
-        <button id="eliminar" type="button"
-          onclick="elimina();">Eliminar</button>
+          <p><input id="deportista" type="text" placeholder="Nombre del deportista" pattern="[a-zA-Zàáâäãåąčćęèé
+            êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/></p>
+          
         
-      <ul id="lista">
-        <li><progress max="100">LOADING…</progress></li>
-      </ul>
+          <button id="agregar" type="button"
+           onclick="alta();">Agregar</button>
+  
+          <button type="submit">Guardar</button>
+          <button id="eliminar" type="button"
+            onclick="elimina();">Eliminar</button>
+          
+        <ul id="lista">
+          <li><progress max="100">LOADING…</progress></li>
+        </ul>
+        <mi-footer></mi-footer>
       </form>
-    </form>
+
+    </div>
+    
     <script>
       /** Id del objeto seleccionado en la lista. */
       let id = "";
@@ -208,6 +216,5 @@
             });
       }
     </script>
-  <mi-footer></mi-footer>
   </body>
 </html>
