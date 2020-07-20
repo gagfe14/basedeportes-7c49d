@@ -71,7 +71,8 @@
     <script src="/__/firebase/7.14.6/firebase-firestore.js"></script>
     <script src="/__/firebase/7.14.6/firebase-storage.js"></script>
     <!-- Carga la configuración de tu proyecto en el servidor de Firebase. -->
-    <script src="/__/firebase/init.js"></script>    
+    <script src="/__/firebase/init.js"></script>  
+    <link rel="stylesheet" href="css/estilos.css">  
   </head>
   <style>
     #view-source {
@@ -88,7 +89,7 @@
   <body>
 
     <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--blue-600">
-      <header class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--white-200 mdl-color-text--black-800">
+      <header class="demo-header mdl-layout_header mdl-layout_header--scroll mdl-color--white-200 mdl-color-text--black-800">
         <div class="mdl-layout__header-row">
           <span class="mdl-layout-title">DEPORTISTAS</span>
           <div class="mdl-layout-spacer"></div>
@@ -104,17 +105,19 @@
             <div class="demo-crumbs mdl-color-text--grey-500">
           
             </div>
-            <h4>Ingrese los datos del deportista</h4>
-              
+            <center><h4>Ingrese los datos del deportista</h4></center>
+              <center>
               <form action="javascript:guarda()">
                 <p class="campo">
-                  <input id="nombreDeportista" type="text" placeholder="Nombre del deportista" pattern="[a-zA-Zàáâäãåąčćęèé
-                  êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/>
+                  <input id="nombreDeportista" type="text"  pattern="[a-zA-Zàáâäãåąčćęèé
+                  êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" placeholder="Nombre del deportista" required>
+                <label for="nombreDeportista"></label>
                 </p>
               <br>
               
               <p class="campo">
-                <input id="edadDeportista" type="number" placeholder="Edad deportista" min="15" max="70" required/>
+                <input id="edadDeportista" type="number" placeholder="Edad del deportista" required min="15" max="70" width="100%">
+                <label for="edadDeportista"></label>
               </p>
               <br>
 
@@ -135,13 +138,13 @@
                   delete
                 </span>
               </button>
-
+              <br>
             <ul id="lista">
              <li><progress max="100">Cargando…</progress></li>
               </ul>
               <mi-footer></mi-footer>
             </form>
-    
+          </center>
     <script>
       /** Id del objeto seleccionado en la lista. */
       let id = "";
@@ -158,12 +161,10 @@
               inner += /* html */
               `<li>
                 <button type=button onclick="muestra('${cod(doc.id)}')">
-                  ${cod(doc.data().NOM_DEPORTISTA)}
+                  <div class="campo principal"> ${cod(doc.data().NOM_DEPORTISTA)} </span> 
+                    <div class="campo">  ${cod(doc.data().EDAD_DEPORTISTA)} </span>
                 </button>
-
-                <button type=button onclick="muestra('${cod(doc.id)}')">
-                  ${cod(doc.data().EDAD_DEPORTISTA)}
-                </button>
+               
               </li>`);
             lista.innerHTML = inner;
           },
