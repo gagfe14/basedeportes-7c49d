@@ -1,6 +1,6 @@
 {
-    "short_name": "nombre de deportes",
-    "name": "PWA de nombres de deportes",
+    "short_name": "deportistas",
+    "name": "PWA de deportistas",
     "start_url": "/index.html",
     "display": "standalone",
     "background_color": "#4fc3f7",
